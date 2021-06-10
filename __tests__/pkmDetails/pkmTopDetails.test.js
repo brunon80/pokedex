@@ -2,7 +2,7 @@ import React from 'react'
 import TopDetails from '../../src/pages/details/UI/TopDetails'
 import { render } from '@testing-library/react-native'
 
-describe('Pkm Details Tests', () => {
+describe('Pkm Details Top Tests', () => {
 
   it('should render TopDetails correctly', () => {
     const { queryByTestId } = render(<TopDetails />)

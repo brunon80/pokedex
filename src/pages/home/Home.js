@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
-import { View, FlatList, Text, StyleSheet, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import { observer } from 'mobx-react'
 import { usePkmStore } from '../../mobx/pkmProvider'
 import PkmListItem from './UI/PkmListItem'
@@ -22,6 +22,7 @@ const HomeScreen = observer(({ navigation }) => {
       <View style={styles.bgTop} />
       <View style={styles.bgBottom} />
       <FlatList
+        refreshControl={<RefreshControl refreshing={pkmStore.isFetching} />}
         data={pkmStore.pokemons}
         keyExtractor={(pkm) => pkm.name}
         renderItem={({ item, index }) =>
@@ -32,9 +33,6 @@ const HomeScreen = observer(({ navigation }) => {
           />
         }
         onEndReached={() => pkmStore.onReachEndList()}
-        onEndReachedThreshold={0.1}
-        initialNumToRender={10}
-        removeClippedSubviews
       />
     </>
   )

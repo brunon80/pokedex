@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: 120,
     position: 'absolute',
     right: 0,
-    top: 50
+    top: 50,
   },
   badge: {
     paddingHorizontal: 10,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pkm Details Tests should match snapshot <TopDetails /> 1`] = `
+exports[`Pkm Details Top Tests should match snapshot <TopDetails /> 1`] = `
 <View
   style={
     Array [

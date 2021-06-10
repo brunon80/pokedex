@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { View, Image, Text, StyleSheet, Pressable } from 'react-native'
 import { observer } from 'mobx-react'
 import addZeros from '../../../utils/addZeros';
+import { toCaptalize } from '../../../utils/toCaptalize';
 
 const  PkmListItem = observer(({ item, index, onGoToDetails }) => {
   const addZerosCb = useCallback(() => {
@@ -11,7 +12,7 @@ const  PkmListItem = observer(({ item, index, onGoToDetails }) => {
 
   return (
     <Pressable testID='list-item' onPress={() => onGoToDetails(item)} style={styles.pokemonItem}>
-      <Text style={styles.itemText}>#{addZerosCb()} {item.name}</Text>
+      <Text style={styles.itemText}>#{addZerosCb()} {toCaptalize(item.name)}</Text>
       <Image
         resizeMode="contain"
         style={styles.pkmLogo}
