@@ -68,6 +68,7 @@ const PkmDetails = observer(({ route, navigation }) => {
                 height: pkmStore.pokemonDetail.height,
                 weight: pkmStore.pokemonDetail.weight
               }}
+              abilites={pkmStore.pokemonDetail.abilities}
             />
           </>
         }

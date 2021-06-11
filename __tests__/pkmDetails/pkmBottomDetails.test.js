@@ -1,6 +1,8 @@
 import React from 'react'
 import BottomDetails from '../../src/pages/details/UI/BottomDetails'
 import SizeInfo from '../../src/pages/details/UI/SizeInfo'
+import Abilities from '../../src/pages/details/UI/Abilities'
+import { toCaptalize } from '../../src/utils/toCaptalize';
 import { render } from '@testing-library/react-native'
 
 describe('Pkm Details Bottom Tests', () => {
@@ -53,6 +55,39 @@ describe('Pkm Details Bottom Tests', () => {
     ).toJSON()
 
     expect(component).toMatchSnapshot()
+  })
+
+  // Habilidades
+
+  it('should render Abilities correctly', () => {
+    const { queryByTestId } = render(<Abilities />)
+    const component = queryByTestId('abilities')
+    expect(component).toBeTruthy()
+  });
+
+  it('should render an array of abilities', () => {
+
+    const abilities = [
+      {
+        ability: {
+          name: 'static'
+        }
+      },
+      {
+        ability: {
+          name: 'poison pin'
+        }
+      },
+    ]
+    
+    const { queryAllByTestId } = render(<Abilities abilities={abilities} />)
+    const components = queryAllByTestId('ability')
+    expect(components.length).toBeGreaterThan(0)
+
+    components.forEach((comp, index) => {
+      expect(comp.props.children).toBe(toCaptalize(abilities[index].ability.name))
+    })
+
   })
 
 })
