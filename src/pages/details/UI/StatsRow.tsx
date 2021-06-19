@@ -25,7 +25,7 @@ const StatsRow: React.FC<StatsRowProps> = ({ label, value, pokemonTypeColor }) =
           <Text style={styles.label} testID="stats-label">{toCaptalize(label)}</Text>
         </View>
         <View style={styles.powerWrapper}>
-          <View style={[styles.powerRowLeft, { width: `${lowerPercentage}%`, backgroundColor: pokemonTypeColor.main }]} />
+          <View style={[styles.powerRowLeft, { width: `${lowerPercentage}%`, backgroundColor: pokemonTypeColor?.main }]} />
           <View style={[styles.powerRowRight, , { width: `${higherPercentage}%`, backgroundColor: '#F6F6F6' }]} />
         </View>
       </View>
