@@ -1,8 +1,8 @@
 import React from 'react'
-import BottomDetails from '../../src/pages/details/UI/BottomDetails'
-import SizeInfo from '../../src/pages/details/UI/SizeInfo'
-import Abilities from '../../src/pages/details/UI/Abilities'
-import { toCaptalize } from '../../src/utils/toCaptalize';
+import BottomDetails from '../../../src/pages/details/UI/BottomDetails'
+import SizeInfo from '../../../src/pages/details/UI/SizeInfo'
+import Abilities from '../../../src/pages/details/UI/Abilities'
+import { toCaptalize } from '../../../src/utils/toCaptalize';
 import { render } from '@testing-library/react-native'
 
 describe('Pkm Details Bottom Tests', () => {

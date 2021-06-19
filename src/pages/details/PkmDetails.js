@@ -69,6 +69,8 @@ const PkmDetails = observer(({ route, navigation }) => {
                 weight: pkmStore.pokemonDetail.weight
               }}
               abilites={pkmStore.pokemonDetail.abilities}
+              pokemonTypeColor={colorTypes[pkmStore.pokemonDetail?.types?.[0]?.type?.name]}
+              stats={pkmStore.pokemonDetail.stats}
             />
           </>
         }
