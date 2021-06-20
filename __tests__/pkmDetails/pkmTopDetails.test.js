@@ -24,14 +24,6 @@ describe('Pkm Details Top Tests', () => {
     expect(component.props.children).toBe(pokemonName)
   })
 
-  it('should has a background color prop', () => {
-    const pokemonTypeColor = { main: '#1234' }
-
-    const { queryByTestId } = render(<TopDetails pokemonTypeColor={pokemonTypeColor} />)
-    const component = queryByTestId('top-details')
-    expect(component.props.style[1].backgroundColor).toBe(pokemonTypeColor?.main)
-  })
-
   it('should render pokemon type badge', () => {
     const pokemonTypes = ['electric', 'normal']
 

@@ -7,14 +7,11 @@ type TopDetailsProps = {
   pokemonName: string
   pokemonTypes: string[]
   pkmImage: string
-  pokemonTypeColor: {
-    main: string
-  }
 }
 
-const TopDetails: React.FC<TopDetailsProps> = ({ pokedexEntry, pokemonName, pokemonTypes, pkmImage, pokemonTypeColor }) => {
+const TopDetails: React.FC<TopDetailsProps> = ({ pokedexEntry, pokemonName, pokemonTypes, pkmImage }) => {
   return (
-    <View testID="top-details" style={[styles.container, { backgroundColor: pokemonTypeColor?.main }]}>
+    <View testID="top-details" style={[styles.container]}>
       <View style={styles.wrapper} >
         <View>
           <Text style={styles.entry} testID="pokedex-entry-number">
@@ -67,8 +64,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     color: 'white',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderRadius: 20,
-    marginHorizontal: 2.5
+    borderRadius: 15,
+    marginHorizontal: 2.5,
+    overflow: 'hidden'
   },
   badgesWrapper: {
     flexDirection: 'row',

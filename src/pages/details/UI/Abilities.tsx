@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     backgroundColor: '#F7F7F7',
-    borderRadius: 100,
+    borderRadius: 20,
     overflow: 'hidden',
     alignItems: 'center',
     marginHorizontal: 5

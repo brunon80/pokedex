@@ -8,9 +8,6 @@ exports[`Pkm Details Top Tests should match snapshot <TopDetails /> 1`] = `
         "padding": 20,
         "paddingBottom": 100,
       },
-      Object {
-        "backgroundColor": undefined,
-      },
     ]
   }
   testID="top-details"
@@ -60,9 +57,10 @@ exports[`Pkm Details Top Tests should match snapshot <TopDetails /> 1`] = `
         style={
           Object {
             "backgroundColor": "rgba(0, 0, 0, 0.1)",
-            "borderRadius": 20,
+            "borderRadius": 15,
             "color": "white",
             "marginHorizontal": 2.5,
+            "overflow": "hidden",
             "paddingHorizontal": 10,
             "paddingVertical": 5,
           }
@@ -75,9 +73,10 @@ exports[`Pkm Details Top Tests should match snapshot <TopDetails /> 1`] = `
         style={
           Object {
             "backgroundColor": "rgba(0, 0, 0, 0.1)",
-            "borderRadius": 20,
+            "borderRadius": 15,
             "color": "white",
             "marginHorizontal": 2.5,
+            "overflow": "hidden",
             "paddingHorizontal": 10,
             "paddingVertical": 5,
           }

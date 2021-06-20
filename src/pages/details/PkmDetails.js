@@ -1,7 +1,8 @@
 import React, { useLayoutEffect } from 'react';
-import { RefreshControl, View } from 'react-native'
+import { RefreshControl, StyleSheet } from 'react-native'
 import { observer } from 'mobx-react'
 import { Container, Content } from '@somapay/storybook-somapay-mobile'
+import { LinearGradient } from 'expo-linear-gradient'
 import { usePkmStore } from '../../mobx/pkmProvider';
 import TopDetails from './UI/TopDetails'
 import { colorTypes } from '../../utils/pkmTypesColor';
@@ -39,19 +40,29 @@ const PkmDetails = observer(({ route, navigation }) => {
   const types = pkmStore?.pokemonDetail?.types?.map(({ type }) => type.name)
   const pokemonName = toCaptalize(pokemon.name)
 
+  const mainColor = colorTypes[pkmStore.pokemonDetail?.types?.[0]?.type?.name]?.main
+  const secondaryColor = pkmStore.pokemonDetail?.types?.hasOwnProperty(1)
+    ? colorTypes[pkmStore.pokemonDetail?.types?.[1]?.type?.name]?.main
+    : mainColor
+
   return (
     <Container>
       <Content
         scrollViewProps={{
-          contentContainerStyle: { 
-            backgroundColor: !pkmStore.isFetching 
-            ? colorTypes[pkmStore.pokemonDetail?.types?.[0]?.type?.name]?.main
-            : DEFAULT_COLOR
-           },
+          style: {
+            backgroundColor: mainColor,
+          },
           refreshControl: <RefreshControl
             refreshing={pkmStore.isFetching}
           />
         }} >
+        {
+          mainColor &&
+          <LinearGradient
+            colors={[mainColor, secondaryColor]}
+            style={styles.gradient}
+          />
+        }
         {
           !pkmStore.isFetching &&
           <>
@@ -59,7 +70,6 @@ const PkmDetails = observer(({ route, navigation }) => {
               pkmImage={pokemon.image}
               pokedexEntry={pkmStore.pokemonDetail.order}
               pokemonName={pokemonName}
-              pokemonTypeColor={colorTypes[pkmStore.pokemonDetail?.types?.[0]?.type?.name]}
               pokemonTypes={types}
             />
             <BottomDetails
@@ -80,3 +90,13 @@ const PkmDetails = observer(({ route, navigation }) => {
 })
 
 export default PkmDetails;
+
+const styles = StyleSheet.create({
+  gradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 200,
+  }
+})
