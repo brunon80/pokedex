@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, RefreshControl } from 'react-native'
+import { View, StyleSheet, RefreshControl, Platform, FlatList } from 'react-native'
 import { FlashList } from "@shopify/flash-list";
 import { observer } from 'mobx-react'
 import { usePkmStore } from '../../mobx/pkmProvider'
@@ -22,22 +22,41 @@ const HomeScreen = observer(({ navigation }) => {
     <>
       <View style={styles.bgTop} />
       <View style={styles.bgBottom} />
-      <FlashList
-        refreshControl={<RefreshControl refreshing={pkmStore.isFetching} />}
-        estimatedItemSize={100}
-        data={pkmStore.pokemons}
-        keyExtractor={(pkm) => pkm.name}
-        renderItem={({ item, index }) =>
-          <PkmListItem 
-            item={item} 
-            index={index}
-            onGoToDetails={onGoToDetails}
-          />
-        }
-        onEndReached={() => pkmStore.onReachEndList()}
-      />
+      <HybridList onGoToDetails={onGoToDetails} pkmStore={pkmStore} />
     </>
   )
+})
+
+const HybridList = observer(({ onGoToDetails, pkmStore }) => {
+  return Platform.OS === 'web' ?
+  <FlatList
+    refreshControl={<RefreshControl refreshing={pkmStore.isFetching} />}
+    data={pkmStore.pokemons}
+    keyExtractor={(pkm) => pkm.name}
+    renderItem={({ item, index }) =>
+      <PkmListItem
+        item={item}
+        index={index}
+        onGoToDetails={onGoToDetails}
+      />
+    }
+    onEndReached={() => pkmStore.onReachEndList()}
+  />
+  :
+  <FlashList
+    refreshControl={<RefreshControl refreshing={pkmStore.isFetching} />}
+    estimatedItemSize={100}
+    data={pkmStore.pokemons}
+    keyExtractor={(pkm) => pkm.name}
+    renderItem={({ item, index }) =>
+      <PkmListItem
+        item={item}
+        index={index}
+        onGoToDetails={onGoToDetails}
+      />
+    }
+    onEndReached={() => pkmStore.onReachEndList()}
+  />
 })
 
 export default HomeScreen;

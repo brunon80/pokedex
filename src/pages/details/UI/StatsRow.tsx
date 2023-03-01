@@ -20,13 +20,13 @@ const StatsRow: React.FC<StatsRowProps> = ({ label, value, pokemonTypeColor }) =
 
   return (
     <View style={styles.wrapper} testID="stats-row">
-      <View>
+      <View style={styles.topWrapper}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label} testID="stats-label">{toCaptalize(label)}</Text>
         </View>
         <View style={styles.powerWrapper}>
           <View style={[styles.powerRowLeft, { width: `${lowerPercentage}%`, backgroundColor: pokemonTypeColor?.main }]} />
-          <View style={[styles.powerRowRight, , { width: `${higherPercentage}%`, backgroundColor: '#F6F6F6' }]} />
+          <View style={[styles.powerRowRight, { width: `${higherPercentage}%`, backgroundColor: '#F6F6F6' }]} />
         </View>
       </View>
       <View style={styles.valueWrapper}>
@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 5,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+  },
+  topWrapper: {
+    flex: 1
   },
   powerRowLeft: {
     padding: 8,
