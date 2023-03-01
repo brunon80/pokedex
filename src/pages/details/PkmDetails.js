@@ -1,13 +1,14 @@
 import React, { useLayoutEffect } from 'react';
 import { RefreshControl, StyleSheet } from 'react-native'
 import { observer } from 'mobx-react'
-import { Container, Content } from '@somapay/storybook-somapay-mobile'
 import { LinearGradient } from 'expo-linear-gradient'
 import { usePkmStore } from '../../mobx/pkmProvider';
 import TopDetails from './UI/TopDetails'
 import { colorTypes } from '../../utils/pkmTypesColor';
 import { toCaptalize } from '../../utils/toCaptalize';
 import BottomDetails from './UI/BottomDetails';
+import Container from '../../../lib/Container';
+import Content from '../../../lib/Content';
 
 const DEFAULT_COLOR = 'red'
 
@@ -41,6 +42,7 @@ const PkmDetails = observer(({ route, navigation }) => {
   const pokemonName = toCaptalize(pokemon.name)
 
   const mainColor = colorTypes[pkmStore.pokemonDetail?.types?.[0]?.type?.name]?.main
+  // eslint-disable-next-line no-prototype-builtins
   const secondaryColor = pkmStore.pokemonDetail?.types?.hasOwnProperty(1)
     ? colorTypes[pkmStore.pokemonDetail?.types?.[1]?.type?.name]?.main
     : mainColor
