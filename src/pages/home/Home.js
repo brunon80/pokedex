@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
+import { View, StyleSheet, RefreshControl } from 'react-native'
+import { FlashList } from "@shopify/flash-list";
 import { observer } from 'mobx-react'
 import { usePkmStore } from '../../mobx/pkmProvider'
 import PkmListItem from './UI/PkmListItem'
@@ -21,8 +22,9 @@ const HomeScreen = observer(({ navigation }) => {
     <>
       <View style={styles.bgTop} />
       <View style={styles.bgBottom} />
-      <FlatList
+      <FlashList
         refreshControl={<RefreshControl refreshing={pkmStore.isFetching} />}
+        estimatedItemSize={100}
         data={pkmStore.pokemons}
         keyExtractor={(pkm) => pkm.name}
         renderItem={({ item, index }) =>
